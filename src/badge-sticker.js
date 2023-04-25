@@ -2,12 +2,14 @@ import { LitElement, html, css } from "lit";
 import "../src/circle-wrap.js";
 import "@lrnwebcomponents/simple-icon/simple-icon.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
+import "@lrnwebcomponents/simple-icon/lib/simple-icon-button.js";
 
 class BadgeSticker extends LitElement {
   static properties = {
     logo: { type: String },
     title: { type: String },
     date: { type: String },
+    verificationLink: { type: String },
   };
 
   static styles = css`
@@ -37,13 +39,21 @@ class BadgeSticker extends LitElement {
       transform: translate(-50%, -50%);
     }
 
-    simple-icon {
+    .logo {
       --simple-icon-width: 75px;
       --simple-icon-height: 75px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    .bottom-links {
+      position: absolute;
+      top: 92%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-decoration: none;
     }
   `;
 
@@ -52,13 +62,23 @@ class BadgeSticker extends LitElement {
     this.logo = "simple-icon:check";
     this.title = "Badge Title";
     this.date = "2021-01-01";
+    this.verificationLink = "https://www.example.com";
   }
 
   render() {
     return html`
       <div class="circle">
         <circle-wrap title="${this.title}" date="${this.date}"></circle-wrap>
-        <simple-icon icon="${this.logo}" accent-color="purple"></simple-icon>
+        <simple-icon
+          class="logo"
+          icon="${this.logo}"
+          accent-color="purple"
+        ></simple-icon>
+        <div class="bottom-links">
+          <simple-icon-button icon="editor:insert-link"></simple-icon-button>
+          <simple-icon-button icon="star"></simple-icon-button>
+          <simple-icon-button icon="description"></simple-icon-button>
+        </div>
       </div>
     `;
   }

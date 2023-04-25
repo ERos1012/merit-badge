@@ -19,6 +19,7 @@ class CircleWrap extends LitElement {
       .container {
         width: 300px;
         height: 300px;
+        margin: 0 auto;
       }
       div.circTxt1,
       div.circTxt2 {
@@ -27,6 +28,8 @@ class CircleWrap extends LitElement {
         position: absolute;
         width: 100%;
         height: 100%;
+        top: 50%;
+        transform-origin: 50% 50%;
       }
       div.circTxt1 p {
         color: #ff0;
@@ -72,7 +75,7 @@ class CircleWrap extends LitElement {
     this.generateCircularText(
       "circTxt1",
       this.title,
-      100,
+      90,
       -170,
       -100,
       "font-size: 20px; color:var(--simple-colors-default-theme-accent-2);",
@@ -81,7 +84,7 @@ class CircleWrap extends LitElement {
     this.generateCircularText(
       "circTxt2",
       this.date,
-      100,
+      90,
       90,
       -40,
       "font-size: 20px; color:var(--simple-colors-default-theme-accent-2);",
