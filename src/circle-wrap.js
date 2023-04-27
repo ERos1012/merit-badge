@@ -32,12 +32,10 @@ class CircleWrap extends LitElement {
         transform-origin: 50% 50%;
       }
       div.circTxt1 p {
-        color: #ff0;
         font-size: 2em;
         margin: 0;
       }
       div.circTxt2 p {
-        color: #f00;
         font-size: 0.8em;
         margin: 0;
       }

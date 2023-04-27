@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { SimpleColors } from "@lrnwebcomponents/simple-colors/simple-colors.js";
 
 class LockedBadge extends LitElement {
   static get properties() {
@@ -16,11 +17,11 @@ class LockedBadge extends LitElement {
       font-size: 21px;
       font-weight: bold;
       line-height: 1.3em;
-      border: 2px dashed #aa3030;
+      border: 2px dashed var(--simple-colors-default-theme-light-blue-7);
       border-radius: 50%;
       width: 200px;
       height: 200px;
-      text-shadow: -1px -1px #aa3030;
+      text-shadow: -1px -1px var(--simple-colors-default-theme-light-blue-7);
       font-weight: normal;
     }
 

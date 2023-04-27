@@ -16,80 +16,52 @@ class MeritBadge extends LitElement {
     verificationLink: { type: String },
     skills: { type: String },
     criteriaName: { type: String },
-    skillsOpened: { type: Boolean },
+    badgeOpened: { type: Boolean },
   };
 
   static styles = css`
     #badge {
-      position: relative;
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       z-index: 2;
     }
-    .verification {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .skillsOpen { 
-      position: absolute;
-      left: 50%;
+    #unlock { 
+      height: 50px;
+      width: 100px;
+      justify-content: center;
       z-index: 3;
     }
   `;
 
   constructor() {
     super();
-    this.skills = [];
-    this.skillsOpened = false;
+    this.skills = ["one", "two", "three"];
+    this.badgeOpened = false;
+
   }
 
   render() {
     return html`
-      <locked-badge ?hidden="${this.skillsOpened}"></locked-badge>
       <div id="badge">
+        <locked-badge ?hidden="${this.badgeOpened}"></locked-badge>
         <badge-sticker
           id="badge-sticker"
           logo="${this.logo}"
           title="${this.title}"
           date="${this.date}"
           verificationLink="${this.verificationLink}"
-          ?hidden="${!this.skillsOpened}"
+          ?hidden="${!this.badgeOpened}"
         ></badge-sticker>
-        <simple-icon-button
-          class="skillsOpen"
-          icon="cancel"
-          @click="${this.skillClick}"
-        ></simple-icon-button>
+        <button id="unlock" @click=${this.badgeLock}>Unlock</button>
       </div>
-
-      <absolute-position-behavior
-        justify
-        position="bottom"
-        allow-overlap
-        sticky
-        auto
-        .target="${this.activeNode}"
-        ?hidden="${!this.skillsOpened}"
-      >
-        ${this.skills.map(
-          (item) => html` <ol>
-            <li>${item}</li>
-          </ol>`
-        )}
-      </absolute-position-behavior>
     `;
   }
 
-  firstUpdated(changedProperties) {
-    if (super.firstUpdated) {
-      super.firstUpdated(changedProperties);
-    }
-    this.activeNode = this.shadowRoot.querySelector("#badge");
-  }
-
-  skillClick(e) {
-    this.skillsOpened = !this.skillsOpened;
-    console.log("skillClick", this.skillsOpened);
+  badgeLock(e) {
+    this.badgeOpened = !this.badgeOpened;
+    console.log("badgeLock", this.badgeOpened);
   }
 }
 
