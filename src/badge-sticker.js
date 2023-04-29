@@ -12,9 +12,9 @@ class BadgeSticker extends LitElement {
     logo: { type: String },
     title: { type: String },
     detailsIcon: { type: String },
+    details: { type: String },
     verificationLink: { type: String },
     skills: { type: String },
-    criteriaName: { type: String },
     skillsOpened: { type: Boolean },
     detailsOpened: { type: Boolean },
   };
@@ -66,8 +66,12 @@ class BadgeSticker extends LitElement {
       text-decoration: none;
     }
 
+    
+
     .popover {
       background-color: var(--simple-colors-default-theme-grey-4);
+      border-radius: 5px;
+      padding: 10px;
     }
 
     .verification-link {
@@ -78,11 +82,13 @@ class BadgeSticker extends LitElement {
     super();
     this.logo = "simple-icon:check";
     this.title = "Badge Title";
-    this.date = "2021-01-01";
+    this.date = "";
     this.verificationLink = "https://www.example.com";
-    this.skills = ["one", "two", "three"];
+    this.skills = "";
+    this.skillsArray = [];
     this.skillsOpened = false;
     this.detailsOpened = false;
+    this.details = "Badge Details";
   }
 
   render() {
@@ -122,10 +128,13 @@ class BadgeSticker extends LitElement {
         .target="${this.activeNode}"
         ?hidden="${!this.skillsOpened}"
       >
-        ${this.skills.map(
-          (item) => html` <ol>
-            <li>List</li>
-          </ol>`
+        <h3>Skills</h3>
+        ${this.skillsArray.map(
+          (item) => html`
+            <ul>
+              <li>${item}</li>
+            </ul>
+          `
         )}
       </absolute-position-behavior>
 
@@ -139,7 +148,8 @@ class BadgeSticker extends LitElement {
         .target="${this.activeNode}"
         ?hidden="${!this.detailsOpened}"
       >
-        <p>Details</p>
+        <h3>Details</h3>
+        <p>${this.details}</p>
       </absolute-position-behavior>
     `;
   }
@@ -149,6 +159,8 @@ class BadgeSticker extends LitElement {
       super.firstUpdated(changedProperties);
     }
     this.activeNode = this.shadowRoot.querySelector("#circle");
+    this.skillsArray = this.skills.split(",");
+    this.date= this.getDate();
   }
 
   skillClick(e) {
@@ -159,6 +171,18 @@ class BadgeSticker extends LitElement {
   detailsClick(e) {
     this.detailsOpened = !this.detailsOpened;
     console.log("detailsClick", this.detailsOpened);
+  }
+
+  getDate(e) {
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    //var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    return date;
   }
 }
 

@@ -12,10 +12,9 @@ class MeritBadge extends LitElement {
     date: { type: String },
     logo: { type: String },
     title: { type: String },
-    detailsIcon: { type: String },
+    details: { type: String },
     verificationLink: { type: String },
     skills: { type: String },
-    criteriaName: { type: String },
     badgeOpened: { type: Boolean },
   };
 
@@ -25,9 +24,10 @@ class MeritBadge extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       z-index: 2;
     }
-    #unlock { 
+    #unlockButton { 
       height: 50px;
       width: 100px;
       justify-content: center;
@@ -37,9 +37,7 @@ class MeritBadge extends LitElement {
 
   constructor() {
     super();
-    this.skills = ["one", "two", "three"];
     this.badgeOpened = false;
-
   }
 
   render() {
@@ -52,9 +50,11 @@ class MeritBadge extends LitElement {
           title="${this.title}"
           date="${this.date}"
           verificationLink="${this.verificationLink}"
+          skills="${this.skills}"
+          details="${this.details}"
           ?hidden="${!this.badgeOpened}"
         ></badge-sticker>
-        <button id="unlock" @click=${this.badgeLock}>Unlock</button>
+        <button id="unlockButton" @click=${this.badgeLock}>${this.badgeOpened ? 'Lock' : 'Unlock'}</button>
       </div>
     `;
   }
@@ -62,7 +62,7 @@ class MeritBadge extends LitElement {
   badgeLock(e) {
     this.badgeOpened = !this.badgeOpened;
     console.log("badgeLock", this.badgeOpened);
-  }
+  } 
 }
 
 customElements.define("merit-badge", MeritBadge);
