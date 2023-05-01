@@ -20,9 +20,17 @@ class CircleWrap extends LitElement {
 
   static get styles() {
     return css`
-      :host([accent-color="orange"]) .circTxt1 p, :host([accent-color="orange"]) .circTxt2 p {
-        background-color: var(--circle-wrap-accent-color, orange);
-        color: black;
+      :host([accent-color="orange"]) .container {
+        color: var(--circle-wrap-accent-color, orange);
+      }
+      :host([accent-color="blue"]) .container {
+        color: var(--circle-wrap-accent-color, white);
+      }
+      :host([accent-color="green"]) .container {
+        color: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-light-green-7));
+      }
+      :host([accent-color="purple"]) .container {
+        color: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-deep-purple-7));
       }
       .container {
         width: 300px;
@@ -84,7 +92,7 @@ class CircleWrap extends LitElement {
       90,
       -170,
       -100,
-      "font-size: 20px; color:var(--simple-colors-default-theme-accent-2);",
+      "font-size: 20px;",
       "transform: scaleY(-1) scaleX(-1); position:absolute"
     );
     this.generateCircularText(
@@ -93,7 +101,7 @@ class CircleWrap extends LitElement {
       90,
       90,
       -40,
-      "font-size: 20px; color:var(--simple-colors-default-theme-accent-2);",
+      "font-size: 20px;",
       ""
     );
   }

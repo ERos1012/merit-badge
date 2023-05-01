@@ -16,6 +16,11 @@ class MeritBadge extends LitElement {
     verificationLink: { type: String },
     skills: { type: String },
     badgeOpened: { type: Boolean },
+    accentColor: {
+      type: String,
+      reflect: true,
+      attribute: "accent-color",
+    },
   };
 
   static styles = css`
@@ -52,6 +57,7 @@ class MeritBadge extends LitElement {
           verificationLink="${this.verificationLink}"
           skills="${this.skills}"
           details="${this.details}"
+          accent-color="${this.accentColor}"
           ?hidden="${!this.badgeOpened}"
         ></badge-sticker>
         <button id="unlockButton" @click=${this.badgeLock}>${this.badgeOpened ? 'Lock' : 'Unlock'}</button>

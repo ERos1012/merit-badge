@@ -17,26 +17,68 @@ class BadgeSticker extends LitElement {
     skills: { type: String },
     skillsOpened: { type: Boolean },
     detailsOpened: { type: Boolean },
+    accentColor: {
+      type: String,
+      reflect: true,
+      attribute: "accent-color",
+    },
   };
 
   static styles = css`
+    :host([accent-color="orange"]) #circle {
+      background: var(--circle-wrap-accent-color, var(--simple-colors-fixed-theme-grey-7));
+      box-shadow: 0 0 0 4px var(--simple-colors-fixed-theme-grey-7),
+          2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+        }
+
+    :host([accent-color="blue"]) #circle {
+      background: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-blue-7));
+      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-blue-7),
+      2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+    }
+
+    :host([accent-color="green"]) #circle {
+      background: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-brown-10));
+      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-brown-10),
+        2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+    }
+
+    :host([accent-color="purple"]) #circle {
+      background: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-light-blue-7));
+      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-light-blue-7),
+        2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+    }
+
+    :host([accent-color="orange"]) .logo, :host([accent-color="orange"]) .bottom-links {
+      --simple-icon-color: orange;
+    }
+
+    :host([accent-color="blue"]) .logo, :host([accent-color="blue"]) .bottom-links {
+      --simple-icon-color: white;
+    }
+
+    :host([accent-color="green"]) .logo, :host([accent-color="green"]) .bottom-links {
+      --simple-icon-color: green;
+    }
+
+    :host([accent-color="purple"]) .logo, :host([accent-color="purple"]) .bottom-links {
+      --simple-icon-color: purple;
+    }
+          
     #circle {
       position: relative;
       padding: 20px;
       margin: 20px;
       width: 200px;
       height: 200px;
+      background: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-grey-7));
 
-      background: var(--simple-colors-default-theme-light-blue-7);
       color: #fff;
       font-size: 21px;
       font-weight: bold;
       line-height: 1.3em;
       border: 2px dashed #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-light-blue-7),
-        2px 1px 6px 4px rgba(10, 10, 0, 0.5);
-      text-shadow: -1px -1px var(--simple-colors-default-theme-light-blue-7);
       font-weight: normal;
     }
 
@@ -66,8 +108,6 @@ class BadgeSticker extends LitElement {
       text-decoration: none;
     }
 
-    
-
     .popover {
       background-color: var(--simple-colors-default-theme-grey-4);
       border-radius: 5px;
@@ -94,14 +134,18 @@ class BadgeSticker extends LitElement {
   render() {
     return html`
       <div id="circle">
-        <circle-wrap title="${this.title}" date="${this.date}"></circle-wrap>
+        <circle-wrap
+          title="${this.title}"
+          date="${this.date}"
+          accent-color="${this.accentColor}"
+        ></circle-wrap>
         <simple-icon class="logo" icon="${this.logo}"></simple-icon>
         <div class="bottom-links">
           <a
             class="verification-link"
             href="${this.verificationLink}"
             target="_blank"
-            tabindex=-1
+            tabindex="-1"
           >
             <simple-icon-button icon="editor:insert-link"></simple-icon-button>
           </a>
@@ -161,7 +205,7 @@ class BadgeSticker extends LitElement {
     }
     this.activeNode = this.shadowRoot.querySelector("#circle");
     this.skillsArray = this.skills.split(",");
-    this.date= this.getDate();
+    this.date = this.getDate();
   }
 
   skillClick(e) {
