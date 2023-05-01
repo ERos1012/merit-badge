@@ -1,6 +1,5 @@
 import { LitElement, html, css } from "lit";
 import { SimpleColors } from "@lrnwebcomponents/simple-colors/simple-colors.js";
-const sheet = new CSSStyleSheet();
 
 class CircleWrap extends LitElement {
   static get tag() {
@@ -11,11 +10,20 @@ class CircleWrap extends LitElement {
     return {
       title: { type: String },
       date: { type: String },
+      accentColor: {
+        type: String,
+        reflect: true,
+        attribute: "accent-color",
+      },
     };
   }
 
   static get styles() {
     return css`
+      :host([accent-color="orange"]) .circTxt1 p, :host([accent-color="orange"]) .circTxt2 p {
+        background-color: var(--circle-wrap-accent-color, orange);
+        color: black;
+      }
       .container {
         width: 300px;
         height: 300px;

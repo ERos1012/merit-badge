@@ -101,19 +101,20 @@ class BadgeSticker extends LitElement {
             class="verification-link"
             href="${this.verificationLink}"
             target="_blank"
+            tabindex=-1
           >
             <simple-icon-button icon="editor:insert-link"></simple-icon-button>
           </a>
           <simple-icon-button
             class="skillsOpen"
             icon="lock-outline"
-            @mouseover="${this.skillClick}"
-            @mouseout="${this.skillClick}"
+            @click="${this.skillClick}"
+            @blur="${this.skillUnfocus}"
           ></simple-icon-button>
           <simple-icon-button
             icon="description"
-            @mouseover="${this.detailsClick}"
-            @mouseout="${this.detailsClick}"
+            @click="${this.detailsClick}"
+            @blur="${this.detailsUnfocus}"
           ></simple-icon-button>
         </div>
       </div>
@@ -165,12 +166,22 @@ class BadgeSticker extends LitElement {
 
   skillClick(e) {
     this.skillsOpened = !this.skillsOpened;
+    this.detailsOpened = false;
     console.log("skillClick", this.skillsOpened);
   }
 
   detailsClick(e) {
     this.detailsOpened = !this.detailsOpened;
+    this.skillsOpened = false;
     console.log("detailsClick", this.detailsOpened);
+  }
+
+  skillUnfocus(e) {
+    this.skillsOpened = false;
+  }
+
+  detailsUnfocus(e) {
+    this.detailsOpened = false;
   }
 
   getDate(e) {
