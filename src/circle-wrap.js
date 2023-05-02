@@ -21,13 +21,13 @@ class CircleWrap extends LitElement {
   static get styles() {
     return css`
       :host([accent-color="orange"]) .container {
-        color: var(--circle-wrap-accent-color, orange);
+        color: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-orange-9));
       }
       :host([accent-color="blue"]) .container {
         color: var(--circle-wrap-accent-color, white);
       }
       :host([accent-color="green"]) .container {
-        color: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-light-green-7));
+        color: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-light-green-10));
       }
       :host([accent-color="purple"]) .container {
         color: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-deep-purple-7));

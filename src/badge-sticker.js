@@ -26,8 +26,8 @@ class BadgeSticker extends LitElement {
 
   static styles = css`
     :host([accent-color="orange"]) #circle {
-      background: var(--circle-wrap-accent-color, var(--simple-colors-fixed-theme-grey-7));
-      box-shadow: 0 0 0 4px var(--simple-colors-fixed-theme-grey-7),
+      background: var(--circle-wrap-accent-color, var(--simple-colors-fixed-theme-grey-2));
+      box-shadow: 0 0 0 4px var(--simple-colors-fixed-theme-grey-2),
           2px 1px 6px 4px rgba(10, 10, 0, 0.5);
         }
 
@@ -38,19 +38,19 @@ class BadgeSticker extends LitElement {
     }
 
     :host([accent-color="green"]) #circle {
-      background: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-brown-10));
-      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-brown-10),
+      background: var(--circle-wrap-accent-color, var(--simple-colors-fixed-theme-grey-2));
+      box-shadow: 0 0 0 4px var(--simple-colors-fixed-theme-grey-2),
         2px 1px 6px 4px rgba(10, 10, 0, 0.5);
     }
 
     :host([accent-color="purple"]) #circle {
-      background: var(--circle-wrap-accent-color, var(--simple-colors-default-theme-light-blue-7));
-      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-light-blue-7),
+      background: var(--circle-wrap-accent-color, var(--simple-colors-fixed-theme-grey-2));
+      box-shadow: 0 0 0 4px var(--simple-colors-fixed-theme-grey-2),
         2px 1px 6px 4px rgba(10, 10, 0, 0.5);
     }
 
     :host([accent-color="orange"]) .logo, :host([accent-color="orange"]) .bottom-links {
-      --simple-icon-color: orange;
+      --simple-icon-color: var(--simple-colors-default-theme-orange-9);
     }
 
     :host([accent-color="blue"]) .logo, :host([accent-color="blue"]) .bottom-links {
@@ -58,7 +58,7 @@ class BadgeSticker extends LitElement {
     }
 
     :host([accent-color="green"]) .logo, :host([accent-color="green"]) .bottom-links {
-      --simple-icon-color: green;
+      --simple-icon-color: var(--simple-colors-default-theme-light-green-10);
     }
 
     :host([accent-color="purple"]) .logo, :host([accent-color="purple"]) .bottom-links {
